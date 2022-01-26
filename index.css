@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@700&display=swap');
+
+:root {
+  --flip-duration: 1s;
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Styles */
+
+body {
+  background-color: hsl(234, 17%, 12%);
+  /* background-image: url(./images/bg-stars.svg); */
+  background-size: cover;
+  background-position: center;
+  font-family: 'Red Hat Text', sans-serif;
+  font-weight: 700;
+  font-size: 4rem;
+}
+
+.container {
+  margin-inline: auto;
+  margin-top: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  width: 11.25rem;
+  height: 10.5rem;
+  perspective: 300px;
+  position: relative;
+}
+
+.card-half {
+  width: 11.25rem;
+  height: 5.25rem;
+  overflow: hidden;
+  position: absolute;
+}
+
+.card-half p {
+  text-align: center;
+}
+
+.card-top-position {
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+
+.card-top-position p {
+  transform: translateY(50%);
+}
+
+.card-top-color {
+  background-color: hsl(240 21% 22%);
+  color: hsl(345 60% 57%);
+}
+
+.card-bottom-position {
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.card-bottom-position p {
+  transform: translateY(-50%);
+}
+
+.card-bottom-color {
+  background-color: hsl(236, 21%, 26%);
+  color: hsl(345, 95%, 68%);
+}
+
+.new-card-top-position {
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.new-card-top-position p {
+  transform: translateY(50%);
+}
+
+.flip {
+  transform-origin: bottom;
+  animation: flip forwards var(--flip-duration) linear;
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateX(0deg);
+  }
+
+  to {
+    transform: rotateX(-180deg);
+  }
+}
+
+.visible {
+  opacity: 1;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+/* Attribution */
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
