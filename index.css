@@ -74,14 +74,17 @@ body {
 }
 
 .card-top-style {
-  border-top-left-radius: 0.75rem;
-  border-top-right-radius: 0.75rem;
   background-color: hsl(240 21% 22%);
   color: hsl(345 60% 57%);
 }
 
-.card-top-style::before,
-.card-top-style::after {
+.top-borders {
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
+}
+
+.top-borders::before,
+.top-borders::after {
   content: '';
   background-color: var(--clr-page-bg);
   width: 1rem;
@@ -91,11 +94,11 @@ body {
   bottom: -0.5rem;
 }
 
-.card-top-style::before {
+.top-borders::before {
   left: -0.5rem;
 }
 
-.card-top-style::after {
+.top-borders::after {
   right: -0.5rem;
 }
 
@@ -110,14 +113,17 @@ body {
 }
 
 .card-bottom-style {
-  border-bottom-left-radius: 0.75rem;
-  border-bottom-right-radius: 0.75rem;
   background-color: hsl(236, 21%, 26%);
   color: hsl(345, 95%, 68%);
 }
 
-.card-bottom-style::before,
-.card-bottom-style::after {
+.bottom-borders {
+  border-bottom-left-radius: 0.75rem;
+  border-bottom-right-radius: 0.75rem;
+}
+
+.bottom-borders::before,
+.bottom-borders::after {
   content: '';
   background-color: var(--clr-page-bg);
   width: 1rem;
@@ -127,11 +133,11 @@ body {
   top: -0.5rem;
 }
 
-.card-bottom-style::before {
+.bottom-borders::before {
   left: -0.5rem;
 }
 
-.card-bottom-style::after {
+.bottom-borders::after {
   right: -0.5rem;
 }
 
