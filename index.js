@@ -8,7 +8,7 @@ const hoursSelector = '.hours-card';
 const minutesSelector = '.minutes-card';
 const secondsSelector = '.seconds-card';
 
-let countDownSeconds = 7 * secondsPerDay;
+let countDownSeconds = 14 * secondsPerDay;
 
 const animateCardFlip = (cardSelector, flipDuration, newValue) => {
   let card = document.querySelector(cardSelector);
