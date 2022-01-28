@@ -1,3 +1,15 @@
+const flipDelay = 1000;
+const flipDuration = 500;
+const secondsPerMinute = 60;
+const secondsPerHour = secondsPerMinute * 60;
+const secondsPerDay = secondsPerHour * 24;
+const daysSelector = '.days-card';
+const hoursSelector = '.hours-card';
+const minutesSelector = '.minutes-card';
+const secondsSelector = '.seconds-card';
+
+let countDownSeconds = 7 * secondsPerDay;
+
 const animateCardFlip = (cardSelector, flipDuration, newValue) => {
   let card = document.querySelector(cardSelector);
   let cardTop = document.querySelector(cardSelector + ' .card-top-position');
@@ -40,49 +52,57 @@ const animateCardFlip = (cardSelector, flipDuration, newValue) => {
   }, flipDuration);
 };
 
-const secondsPerMinute = 60;
-const secondsPerHour = secondsPerMinute * 60;
-const secondsPerDay = secondsPerHour * 24;
+const computeTimeValues = (secondsInput) => {
+  let secondsLeft = secondsInput;
+  const days = Math.floor(countDownSeconds / secondsPerDay);
+  secondsLeft -= days * secondsPerDay;
 
-let countDownSeconds = 9 * secondsPerDay;
-const flipDelay = 1000;
-const flipDuration = 500;
+  const hours = Math.floor(secondsLeft / secondsPerHour);
+  secondsLeft -= hours * secondsPerHour;
 
-let daysDisplay = 9;
-let hoursDisplay = 0;
-let minutesDisplay = 0;
-let secondsDisplay = 0;
+  const minutes = Math.floor(secondsLeft / secondsPerMinute);
+  secondsLeft -= minutes * secondsPerMinute;
+
+  const seconds = secondsLeft;
+
+  return [days, hours, minutes, seconds];
+};
+
+let [daysDisplay, hoursDisplay, minutesDisplay, secondsDisplay] = computeTimeValues(countDownSeconds);
+document
+  .querySelectorAll(daysSelector + ' p')
+  .forEach((text) => (text.innerHTML = String(daysDisplay).padStart(2, '0')));
+document
+  .querySelectorAll(hoursSelector + ' p')
+  .forEach((text) => (text.innerHTML = String(hoursDisplay).padStart(2, '0')));
+document
+  .querySelectorAll(minutesSelector + ' p')
+  .forEach((text) => (text.innerHTML = String(minutesDisplay).padStart(2, '0')));
+document
+  .querySelectorAll(secondsSelector + ' p')
+  .forEach((text) => (text.innerHTML = String(secondsDisplay).padStart(2, '0')));
 
 const intervalId = setInterval(() => {
   countDownSeconds--;
+
+  let [days, hours, minutes, seconds] = computeTimeValues(countDownSeconds);
+
   if (countDownSeconds >= 0) {
-    let secondsLeft = countDownSeconds;
-    const days = Math.floor(countDownSeconds / secondsPerDay);
-    secondsLeft -= days * secondsPerDay;
-
-    const hours = Math.floor(secondsLeft / secondsPerHour);
-    secondsLeft -= hours * secondsPerHour;
-
-    const minutes = Math.floor(secondsLeft / secondsPerMinute);
-    secondsLeft -= minutes * secondsPerMinute;
-
-    const seconds = secondsLeft;
-
     if (days !== daysDisplay) {
       daysDisplay = days;
-      animateCardFlip('.days-card', flipDuration, String(daysDisplay).padStart(2, '0'));
+      animateCardFlip(daysSelector, flipDuration, String(daysDisplay).padStart(2, '0'));
     }
     if (hours != hoursDisplay) {
       hoursDisplay = hours;
-      animateCardFlip('.hours-card', flipDuration, String(hoursDisplay).padStart(2, '0'));
+      animateCardFlip(hoursSelector, flipDuration, String(hoursDisplay).padStart(2, '0'));
     }
     if (minutes != minutesDisplay) {
       minutesDisplay = minutes;
-      animateCardFlip('.minutes-card', flipDuration, String(minutesDisplay).padStart(2, '0'));
+      animateCardFlip(minutesSelector, flipDuration, String(minutesDisplay).padStart(2, '0'));
     }
     if (seconds != secondsDisplay) {
       secondsDisplay = seconds;
-      animateCardFlip('.seconds-card', flipDuration, String(secondsDisplay).padStart(2, '0'));
+      animateCardFlip(secondsSelector, flipDuration, String(secondsDisplay).padStart(2, '0'));
     }
   }
 
